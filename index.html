@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Design & Architecture MCQ Practice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        #quiz-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .answer-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .answer-btn:hover {
+            background-color: #2980b9;
+        }
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        #next-btn {
+            display: none;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #next-btn:hover {
+            background-color: #27ae60;
+        }
+        .correct {
+            background-color: #2ecc71 !important;
+        }
+        .incorrect {
+            background-color: #e74c3c !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Software Design & Architecture MCQ Practice</h1>
+    <div id="quiz-container">
+        <div id="question"></div>
+        <div id="answers"></div>
+        <div id="feedback"></div>
+        <button id="next-btn">Next Question</button>
+    </div>
+
+    <script>
+        const quizData = [
+        {
+                question: "Which of the following best describes the concept of 'cohesion' in software design?",
+                answers: [
+                    "The degree of interdependence between software modules",
+                    "The process of combining two software systems",
+                    "The degree to which elements inside a module belong together",
+                    "The act of deploying software"
+                ],
+                correct: 2
+            },
+            {
+                question: "What is the primary goal of the 'Single Responsibility Principle' in software design?",
+                answers: [
+                    "To ensure each class has only one method",
+                    "To make sure each module or class has one reason to change",
+                    "To limit the number of developers working on a single component",
+                    "To reduce the overall number of classes in a system"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which architectural style is characterized by independent components that communicate through messages?",
+                answers: [
+                    "Monolithic architecture",
+                    "Layered architecture",
+                    "Microservices architecture",
+                    "Event-driven architecture"
+                ],
+                correct: 3
+            },
+            {
+                question: "What does the acronym SOLID stand for in object-oriented design?",
+                answers: [
+                    "Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion",
+                    "Scalable Object-Oriented Language for Internet Development",
+                    "Software Organization for Logical Implementation and Design",
+                    "System Optimization, Linking, Integration, and Deployment"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which of the following is NOT a common architectural pattern?",
+                answers: [
+                    "Model-View-Controller (MVC)",
+                    "Client-Server",
+                    "Peer-to-Peer",
+                    "Single-Page Application (SPA)"
+                ],
+                correct: 3
+            },
+            {
+                question: "What is the main purpose of a design pattern in software development?",
+                answers: [
+                    "To provide a step-by-step guide for coding",
+                    "To offer a reusable solution to a common problem",
+                    "To enforce a specific programming language",
+                    "To replace the need for software architecture"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which of the following is a key characteristic of good software architecture?",
+                answers: [
+                    "Maximizing the coupling between components",
+                    "Minimizing the use of design patterns",
+                    "Facilitating the system's evolution and maintenance",
+                    "Focusing solely on functional requirements"
+                ],
+                correct: 2
+            },
+            {
+                question: "What is the primary benefit of using a layered architecture?",
+                answers: [
+                    "It eliminates the need for testing",
+                    "It increases system coupling",
+                    "It improves system security",
+                    "It separates concerns and improves maintainability"
+                ],
+                correct: 3
+            },
+            {
+                question: "Which design principle suggests that software entities should be open for extension but closed for modification?",
+                answers: [
+                    "Single Responsibility Principle",
+                    "Open-Closed Principle",
+                    "Liskov Substitution Principle",
+                    "Interface Segregation Principle"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is the main goal of the Repository pattern in software design?",
+                answers: [
+                    "To optimize database queries",
+                    "To create a central point for data access logic",
+                    "To eliminate the need for a database",
+                    "To increase coupling between the data layer and business logic"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which of the following is NOT typically considered a quality attribute of software architecture?",
+                answers: [
+                    "Performance",
+                    "Scalability",
+                    "Coding style",
+                    "Security"
+                ],
+                correct: 2
+            },
+            {
+                question: "What is the primary purpose of the Facade design pattern?",
+                answers: [
+                    "To create multiple instances of a class",
+                    "To provide a simplified interface to a complex subsystem",
+                    "To ensure that a class has only one instance",
+                    "To define a skeleton of an algorithm in an operation"
+                ],
+                correct: 1
+            },
+            {
+                question: "In the context of software architecture, what does 'scalability' refer to?",
+                answers: [
+                    "The ability of a system to handle increased load or growth",
+                    "The speed at which a system processes requests",
+                    "The number of features a system has",
+                    "The complexity of a system's user interface"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which architectural style is best suited for systems with high variability in load?",
+                answers: [
+                    "Monolithic architecture",
+                    "Layered architecture",
+                    "Microservices architecture",
+                    "Pipe and filter architecture"
+                ],
+                correct: 2
+            },
+            {
+                question: "What is the main advantage of using the Model-View-Controller (MVC) pattern?",
+                answers: [
+                    "It eliminates the need for a database",
+                    "It automatically generates user interfaces",
+                    "It separates the concerns of data, user interface, and control logic",
+                    "It increases the coupling between system components"
+                ],
+                correct: 2
+            }
+            // Add more questions here...
+        ];
+
+        let currentQuestion = 0;
+        const questionEl = document.getElementById('question');
+        const answersEl = document.getElementById('answers');
+        const feedbackEl = document.getElementById('feedback');
+        const nextBtn = document.getElementById('next-btn');
+
+        function loadQuestion() {
+            const question = quizData[currentQuestion];
+            questionEl.textContent = question.question;
+
+            answersEl.innerHTML = '';
+            question.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.textContent = answer;
+                button.classList.add('answer-btn');
+                button.addEventListener('click', () => selectAnswer(index));
+                answersEl.appendChild(button);
+            });
+
+            feedbackEl.textContent = '';
+            nextBtn.style.display = 'none';
+        }
+
+        function selectAnswer(index) {
+            const question = quizData[currentQuestion];
+            const buttons = document.querySelectorAll('.answer-btn');
+
+            buttons.forEach(button => button.disabled = true);
+
+            if (index === question.correct) {
+                feedbackEl.textContent = 'Correct!';
+                buttons[index].classList.add('correct');
+            } else {
+                feedbackEl.textContent = 'Incorrect. The correct answer is: ' + question.answers[question.correct];
+                buttons[index].classList.add('incorrect');
+                buttons[question.correct].classList.add('correct');
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                questionEl.textContent = 'Quiz completed!';
+                answersEl.innerHTML = '';
+                feedbackEl.textContent = `You've completed all ${quizData.length} questions.`;
+                nextBtn.style.display = 'none';
+            }
+        });
+
+        loadQuestion();
+    </script>
+</body>
+</html>
